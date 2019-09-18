@@ -55,7 +55,7 @@ def print_low_indoor_experiment(position_values, rotation_values, time_stamps):
 ######################################################################################################################################
 ######################################################################################################################################
     position_figure = plt.figure(0, figsize=(16, 9), dpi=120)
-    position_figure.suptitle("60cm Gap", fontsize=30)
+    position_figure.suptitle("Low Gap", fontsize=30)
     left_ax1 = plt.subplot(3, 1, 1)
     plt.plot(x_axis_values[start_index:end_index],
              rotation_values[start_index:end_index, 0], '--', color=(1, 0, 0), label='Roll (degrees)')
@@ -94,12 +94,12 @@ def print_low_indoor_experiment(position_values, rotation_values, time_stamps):
     left_ax3 = plt.subplot(3, 1, 3)
     left_ax3.fill_between(x_axis_values[start_index:end_index, 0],
                               position_values[start_index:end_index,
-                                              2] + body_height_offset - body_height + mount_height / 2.0,
-                              position_values[start_index:end_index, 2] + body_height_offset + body_height + mount_height / 2.0, color=(0, 0, 1), alpha=0.1, label='Z Position (m)')
+                                              2] + body_height_offset - body_height / 2.0,
+                              position_values[start_index:end_index, 2] + body_height_offset + body_height / 2.0 + mount_height, color=(0, 0, 1), alpha=0.1, label='Z Position (m)')
     plt.plot(x_axis_values[start_index:end_index],
-             position_values[start_index:end_index, 2] + body_height_offset - body_height + mount_height / 2.0, color=(0, 0, 1))
+             position_values[start_index:end_index, 2] + body_height_offset - body_height / 2.0, color=(0, 0, 1))
     plt.plot(x_axis_values[start_index:end_index],
-             position_values[start_index:end_index, 2] + body_height_offset + body_height + mount_height / 2.0, color=(0, 0, 1))
+             position_values[start_index:end_index, 2] + body_height_offset + body_height / 2.0 + mount_height, color=(0, 0, 1))
 
     right_ax3 = left_ax3.twinx()
     right_ax3.plot(x_axis_values[start_index:end_index],
@@ -120,6 +120,23 @@ def print_low_indoor_experiment(position_values, rotation_values, time_stamps):
 
     position_figure.savefig(
         sys.argv[2] + "indoor-low-plot.pdf", bbox_inches='tight', format='pdf')
+
+    min_height = np.amin(position_values[start_index:end_index,2])
+    max_height = np.max(position_values[start_index:end_index,2])
+    print("Min Height: %f (%f,%f)" % (min_height, min_height + body_height_offset - body_height / 2.0, 
+                                        min_height + body_height_offset + body_height / 2.0 + mount_height))
+
+    print("Max Height: %f (%f,%f)" % (max_height, max_height + body_height_offset - body_height / 2.0, 
+                                        max_height + body_height_offset + body_height / 2.0 + mount_height))
+
+    print("Max Roll: %f" % (np.amax(rotation_values[start_index:end_index,0])) )
+    print("Max Pitch: %f" % (np.amax(rotation_values[start_index:end_index,1])) )
+    print("Max Yaw: %f" % (np.amax(rotation_values[start_index:end_index,2])) )
+
+    print("Min Roll: %f" % (np.amin(rotation_values[start_index:end_index,0])) )
+    print("Min Pitch: %f" % (np.amin(rotation_values[start_index:end_index,1])) )
+    print("Min Yaw: %f" % (np.amin(rotation_values[start_index:end_index,2])) )
+
 
     position_figure.show()
 
@@ -213,12 +230,12 @@ def print_rotated_indoor_experiment(position_values, rotation_values, time_stamp
     left_ax3 = plt.subplot(3, 1, 3)
     left_ax3.fill_between(x_axis_values[start_index:end_index, 0],
                               position_values[start_index:end_index,
-                                              2] + body_height_offset - body_height + mount_height / 2.0,
-                              position_values[start_index:end_index, 2] + body_height_offset + body_height + mount_height / 2.0, color=(0, 0, 1), alpha=0.1, label='Z Position (m)')
+                                              2] + body_height_offset - body_height / 2.0,
+                              position_values[start_index:end_index, 2] + body_height_offset + body_height / 2.0 + mount_height, color=(0, 0, 1), alpha=0.1, label='Z Position (m)')
     plt.plot(x_axis_values[start_index:end_index],
-             position_values[start_index:end_index, 2] + body_height_offset - body_height + mount_height / 2.0, color=(0, 0, 1))
+             position_values[start_index:end_index, 2] + body_height_offset - body_height / 2.0, color=(0, 0, 1))
     plt.plot(x_axis_values[start_index:end_index],
-             position_values[start_index:end_index, 2] + body_height_offset + body_height + mount_height / 2.0, color=(0, 0, 1))
+             position_values[start_index:end_index, 2] + body_height_offset + body_height / 2.0 + mount_height, color=(0, 0, 1))
 
     right_ax3 = left_ax3.twinx()
     right_ax3.plot(x_axis_values[start_index:end_index],
@@ -236,6 +253,23 @@ def print_rotated_indoor_experiment(position_values, rotation_values, time_stamp
     right_ax3.set_ylim(-45, 45)
 
     #position_figure.tight_layout()
+
+    min_height = np.amin(position_values[start_index:end_index,2])
+    max_height = np.max(position_values[start_index:end_index,2])
+    print("Min Height: %f (%f,%f)" % (min_height, min_height + body_height_offset - body_height / 2.0, 
+                                        min_height + body_height_offset + body_height / 2.0 + mount_height))
+
+    print("Max Height: %f (%f,%f)" % (max_height, max_height + body_height_offset - body_height / 2.0, 
+                                        max_height + body_height_offset + body_height / 2.0 + mount_height))
+
+    print("Max Roll: %f" % (np.amax(rotation_values[start_index:end_index,0])) )
+    print("Max Pitch: %f" % (np.amax(rotation_values[start_index:end_index,1])) )
+    print("Max Yaw: %f" % (np.amax(rotation_values[start_index:end_index,2])) )
+
+    print("Min Roll: %f" % (np.amin(rotation_values[start_index:end_index,0])) )
+    print("Min Pitch: %f" % (np.amin(rotation_values[start_index:end_index,1])) )
+    print("Min Yaw: %f" % (np.amin(rotation_values[start_index:end_index,2])) )
+
 
     position_figure.savefig(
         sys.argv[2] + "indoor-rotated-plot.pdf", bbox_inches='tight', format='pdf')
@@ -339,12 +373,12 @@ def print_step_indoor_experiment(position_values, rotation_values, time_stamps):
     left_ax3 = plt.subplot(3, 1, 3)
     left_ax3.fill_between(x_axis_values[start_index:end_index, 0],
                               position_values[start_index:end_index,
-                                              2] + body_height_offset - body_height + mount_height / 2.0,
-                              position_values[start_index:end_index, 2] + body_height_offset + body_height + mount_height / 2.0, color=(0, 0, 1), alpha=0.1, label='Z Position (m)')
+                                              2] + body_height_offset - body_height / 2.0,
+                              position_values[start_index:end_index, 2] + body_height_offset + body_height / 2.0 + mount_height, color=(0, 0, 1), alpha=0.1, label='Z Position (m)')
     plt.plot(x_axis_values[start_index:end_index],
-             position_values[start_index:end_index, 2] + body_height_offset - body_height + mount_height / 2.0, color=(0, 0, 1))
+             position_values[start_index:end_index, 2] + body_height_offset - body_height / 2.0, color=(0, 0, 1))
     plt.plot(x_axis_values[start_index:end_index],
-             position_values[start_index:end_index, 2] + body_height_offset + body_height + mount_height / 2.0, color=(0, 0, 1))
+             position_values[start_index:end_index, 2] + body_height_offset + body_height / 2.0 + mount_height, color=(0, 0, 1))
 
     right_ax3 = left_ax3.twinx()
     right_ax3.plot(x_axis_values[start_index:end_index],
@@ -366,6 +400,23 @@ def print_step_indoor_experiment(position_values, rotation_values, time_stamps):
     right_ax3.set_ylim(-45, 45)
 
     #position_figure.tight_layout()
+
+    min_height = np.amin(position_values[start_index:end_index,2])
+    max_height = np.max(position_values[start_index:end_index,2])
+    print("Min Height: %f (%f,%f)" % (min_height, min_height + body_height_offset - body_height / 2.0, 
+                                        min_height + body_height_offset + body_height / 2.0 + mount_height))
+
+    print("Max Height: %f (%f,%f)" % (max_height, max_height + body_height_offset - body_height / 2.0, 
+                                        max_height + body_height_offset + body_height / 2.0 + mount_height))
+
+    print("Max Roll: %f" % (np.amax(rotation_values[start_index:end_index,0])) )
+    print("Max Pitch: %f" % (np.amax(rotation_values[start_index:end_index,1])) )
+    print("Max Yaw: %f" % (np.amax(rotation_values[start_index:end_index,2])) )
+
+    print("Min Roll: %f" % (np.amin(rotation_values[start_index:end_index,0])) )
+    print("Min Pitch: %f" % (np.amin(rotation_values[start_index:end_index,1])) )
+    print("Min Yaw: %f" % (np.amin(rotation_values[start_index:end_index,2])) )
+
 
     position_figure.savefig(
         sys.argv[2] + "indoor-step-plot.pdf", bbox_inches='tight', format='pdf')
@@ -472,12 +523,12 @@ def print_first_field_experiment(position_values, rotation_values, time_stamps):
     left_ax3 = plt.subplot(3, 1, 3)
     left_ax3.fill_between(x_axis_values[start_index:end_index, 0],
                               position_values[start_index:end_index,
-                                              2] + body_height_offset - body_height + mount_height / 2.0,
-                              position_values[start_index:end_index, 2] + body_height_offset + body_height + mount_height / 2.0, color=(0, 0, 1), alpha=0.1, label='Z Position (m)')
+                                              2] + body_height_offset - body_height / 2.0,
+                              position_values[start_index:end_index, 2] + body_height_offset + body_height / 2.0 + mount_height, color=(0, 0, 1), alpha=0.1, label='Z Position (m)')
     plt.plot(x_axis_values[start_index:end_index],
-             position_values[start_index:end_index, 2] + body_height_offset - body_height + mount_height / 2.0, color=(0, 0, 1))
+             position_values[start_index:end_index, 2] + body_height_offset - body_height / 2.0, color=(0, 0, 1))
     plt.plot(x_axis_values[start_index:end_index],
-             position_values[start_index:end_index, 2] + body_height_offset + body_height + mount_height / 2.0, color=(0, 0, 1))
+             position_values[start_index:end_index, 2] + body_height_offset + body_height / 2.0 + mount_height, color=(0, 0, 1))
 
     right_ax3 = left_ax3.twinx()
     right_ax3.plot(x_axis_values[start_index:end_index],
@@ -499,6 +550,22 @@ def print_first_field_experiment(position_values, rotation_values, time_stamps):
     right_ax3.set_ylim(-45, 45)
 
     #position_figure.tight_layout()
+
+    min_height = np.amin(position_values[start_index:end_index,2])
+    max_height = np.max(position_values[start_index:end_index,2])
+    print("Min Height: %f (%f,%f)" % (min_height, min_height + body_height_offset - body_height / 2.0, 
+                                        min_height + body_height_offset + body_height / 2.0 + mount_height))
+
+    print("Max Height: %f (%f,%f)" % (max_height, max_height + body_height_offset - body_height / 2.0, 
+                                        max_height + body_height_offset + body_height / 2.0 + mount_height))
+
+    print("Max Roll: %f" % (np.amax(rotation_values[start_index:end_index,0])) )
+    print("Max Pitch: %f" % (np.amax(rotation_values[start_index:end_index,1])) )
+    print("Max Yaw: %f" % (np.amax(rotation_values[start_index:end_index,2])) )
+
+    print("Min Roll: %f" % (np.amin(rotation_values[start_index:end_index,0])) )
+    print("Min Pitch: %f" % (np.amin(rotation_values[start_index:end_index,1])) )
+    print("Min Yaw: %f" % (np.amin(rotation_values[start_index:end_index,2])) )
 
     position_figure.savefig(
         sys.argv[2] + "rectangular-gap-plot.pdf", bbox_inches='tight', format='pdf')
@@ -601,12 +668,12 @@ def print_second_field_experiment(position_values, rotation_values, time_stamps)
     left_ax3 = plt.subplot(3, 1, 3)
     left_ax3.fill_between(x_axis_values[start_index:end_index, 0],
                               position_values[start_index:end_index,
-                                              2] + body_height_offset - body_height + mount_height / 2.0,
-                              position_values[start_index:end_index, 2] + body_height_offset + body_height + mount_height / 2.0, color=(0, 0, 1), alpha=0.1, label='Z Position (m)')
+                                              2] + body_height_offset - body_height / 2.0,
+                              position_values[start_index:end_index, 2] + body_height_offset + body_height / 2.0 + mount_height, color=(0, 0, 1), alpha=0.1, label='Z Position (m)')
     plt.plot(x_axis_values[start_index:end_index],
-             position_values[start_index:end_index, 2] + body_height_offset - body_height + mount_height / 2.0, color=(0, 0, 1))
+             position_values[start_index:end_index, 2] + body_height_offset - body_height / 2.0, color=(0, 0, 1))
     plt.plot(x_axis_values[start_index:end_index],
-             position_values[start_index:end_index, 2] + body_height_offset + body_height + mount_height / 2.0, color=(0, 0, 1))
+             position_values[start_index:end_index, 2] + body_height_offset + body_height / 2.0 + mount_height, color=(0, 0, 1))
 
     right_ax3 = left_ax3.twinx()
     right_ax3.plot(x_axis_values[start_index:end_index],
@@ -624,6 +691,23 @@ def print_second_field_experiment(position_values, rotation_values, time_stamps)
     right_ax3.legend(loc="upper right")
     right_ax3.set_ylim(-45, 45)
 
+    min_height = np.amin(position_values[start_index:end_index,2])
+    max_height = np.max(position_values[start_index:end_index,2])
+    print("Min Height: %f (%f,%f)" % (min_height, min_height + body_height_offset - body_height / 2.0, 
+                                        min_height + body_height_offset + body_height / 2.0 + mount_height))
+
+    print("Max Height: %f (%f,%f)" % (max_height, max_height + body_height_offset - body_height / 2.0, 
+                                        max_height + body_height_offset + body_height / 2.0 + mount_height))
+
+    print("Max Roll: %f" % (np.amax(rotation_values[start_index:end_index,0])) )
+    print("Max Pitch: %f" % (np.amax(rotation_values[start_index:end_index,1])) )
+    print("Max Yaw: %f" % (np.amax(rotation_values[start_index:end_index,2])) )
+
+    print("Min Roll: %f" % (np.amin(rotation_values[start_index:end_index,0])) )
+    print("Min Pitch: %f" % (np.amin(rotation_values[start_index:end_index,1])) )
+    print("Min Yaw: %f" % (np.amin(rotation_values[start_index:end_index,2])) )
+
+
     position_figure.savefig(
         sys.argv[2] + "crumbling-wall-plot.pdf", bbox_inches='tight', format='pdf')
 
@@ -633,6 +717,7 @@ def print_second_field_experiment(position_values, rotation_values, time_stamps)
 
 
 def plot_collapsed_building(position_values, rotation_values, time_stamps):
+    #/media/raab/Bixby/JFR2019/jfr_data/bags/best_bags/2019-07-03-23-09-13.bag.active
 
     start_time = 10
     end_time = 100
@@ -725,12 +810,12 @@ def plot_collapsed_building(position_values, rotation_values, time_stamps):
     left_ax3 = plt.subplot(3, 1, 3)
     left_ax3.fill_between(x_axis_values[start_index:end_index, 0],
                               position_values[start_index:end_index,
-                                              2] + body_height_offset - body_height + mount_height / 2.0,
-                              position_values[start_index:end_index, 2] + body_height_offset + body_height + mount_height / 2.0, color=(0, 0, 1), alpha=0.1, label='Z Position (m)')
+                                              2] + body_height_offset - body_height / 2.0,
+                              position_values[start_index:end_index, 2] + body_height_offset + body_height / 2.0 + mount_height, color=(0, 0, 1), alpha=0.1, label='Z Position (m)')
     plt.plot(x_axis_values[start_index:end_index],
-             position_values[start_index:end_index, 2] + body_height_offset - body_height + mount_height / 2.0, color=(0, 0, 1))
+             position_values[start_index:end_index, 2] + body_height_offset - body_height / 2.0, color=(0, 0, 1))
     plt.plot(x_axis_values[start_index:end_index],
-             position_values[start_index:end_index, 2] + body_height_offset + body_height + mount_height / 2.0, color=(0, 0, 1))
+             position_values[start_index:end_index, 2] + body_height_offset + body_height / 2.0 + mount_height, color=(0, 0, 1))
 
     right_ax3 = left_ax3.twinx()
     right_ax3.plot(x_axis_values[start_index:end_index],
@@ -757,6 +842,23 @@ def plot_collapsed_building(position_values, rotation_values, time_stamps):
     position_figure.savefig(
         sys.argv[2] + "collapsed-building-plot.pdf", bbox_inches='tight', format='pdf')
 
+    min_height = np.amin(position_values[start_index:end_index,2])
+    max_height = np.max(position_values[start_index:end_index,2])
+    print("Min Height: %f (%f,%f)" % (min_height, min_height + body_height_offset - body_height / 2.0, 
+                                        min_height + body_height_offset + body_height / 2.0 + mount_height))
+
+    print("Max Height: %f (%f,%f)" % (max_height, max_height + body_height_offset - body_height / 2.0, 
+                                        max_height + body_height_offset + body_height / 2.0 + mount_height))
+
+    print("Max Roll: %f" % (np.amax(rotation_values[start_index:end_index,0])) )
+    print("Max Pitch: %f" % (np.amax(rotation_values[start_index:end_index,1])) )
+    print("Max Yaw: %f" % (np.amax(rotation_values[start_index:end_index,2])) )
+
+    print("Min Roll: %f" % (np.amin(rotation_values[start_index:end_index,0])) )
+    print("Min Pitch: %f" % (np.amin(rotation_values[start_index:end_index,1])) )
+    print("Min Yaw: %f" % (np.amin(rotation_values[start_index:end_index,2])) )
+
+
     position_figure.show()
 
     input()
@@ -776,5 +878,5 @@ if __name__ == "__main__":
     #print_rotated_indoor_experiment(position_values, rotation_values, time_stamps)
     #print_step_indoor_experiment(position_values, rotation_values, time_stamps)
     #print_first_field_experiment(position_values, rotation_values, time_stamps)
-    #print_second_field_experiment(position_values, rotation_values, time_stamps)
-    plot_collapsed_building(position_values, rotation_values, time_stamps)
+    print_second_field_experiment(position_values, rotation_values, time_stamps)
+    #plot_collapsed_building(position_values, rotation_values, time_stamps)
