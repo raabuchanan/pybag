@@ -7,14 +7,14 @@ import matplotlib.pyplot as plt
 
 
 def print_low_indoor_experiment(position_values, rotation_values, time_stamps):
-#      "args": ["/media/russellb/Bradburrito/JFR2019/jfr_data/bags/60cm/2019-07-14-21-35-14.bag", "/home/russellb/Dropbox/Apps/ShareLaTeX/Buchanan JFR 2019/figures/pdf/"],
+    #  "args": ["/media/russellb/Bradburrito/JFR2019/jfr_data/bags/60cm/2019-07-14-21-35-14.bag", "/home/russellb/Dropbox/Apps/ShareLaTeX/Buchanan JFR 2019/figures/pdf/"],
 
     start_time = 20
     end_time = 100
 
     body_height_offset = 0.08
     body_height = 0.24
-    mount_height = 0.11
+    mount_height = 0.13
     body_width = 0.27
     body_length = 0.531
 
@@ -55,7 +55,7 @@ def print_low_indoor_experiment(position_values, rotation_values, time_stamps):
 ######################################################################################################################################
 ######################################################################################################################################
     position_figure = plt.figure(0, figsize=(16, 9), dpi=120)
-    position_figure.suptitle("Low Gap", fontsize=30)
+    #position_figure.suptitle("Low Gap", fontsize=30)
     left_ax1 = plt.subplot(3, 1, 1)
     plt.plot(x_axis_values[start_index:end_index],
              rotation_values[start_index:end_index, 0], '--', color=(1, 0, 0), label='Roll (degrees)')
@@ -145,13 +145,13 @@ def print_low_indoor_experiment(position_values, rotation_values, time_stamps):
 
 
 def print_rotated_indoor_experiment(position_values, rotation_values, time_stamps):
-#"args": ["/media/russellb/Bradburrito/JFR2019/jfr_data/bags/45degrees/2019-07-21-10-33-17.bag", "/home/russellb/Dropbox/Apps/ShareLaTeX/Buchanan JFR 2019/figures/pdf/"],
+# "args": ["/media/russellb/Bradburrito/JFR2019/jfr_data/bags/45degrees/2019-07-21-10-33-17.bag", "/home/russellb/Dropbox/Apps/ShareLaTeX/Buchanan JFR 2019/figures/pdf/"],
     start_time = 20
     end_time = 100
 
     body_height_offset = 0.08
     body_height = 0.24
-    mount_height = 0.11
+    mount_height = 0.13
     body_width = 0.27
     body_length = 0.531
 
@@ -190,8 +190,8 @@ def print_rotated_indoor_experiment(position_values, rotation_values, time_stamp
 ######################################################################################################################################
 ######################################################################################################################################
 ######################################################################################################################################
-    position_figure = plt.figure(0, figsize=(16, 9), dpi=120)
-    position_figure.suptitle("Rotated Gap", fontsize=30)
+    position_figure = plt.figure(0, figsize=(16, 9), dpi=100)
+    #position_figure.suptitle("Rotated Gap", fontsize=30)
     left_ax1 = plt.subplot(3, 1, 1)
     plt.plot(x_axis_values[start_index:end_index],
              rotation_values[start_index:end_index, 0], '--', color=(1, 0, 0), label='Roll (degrees)')
@@ -286,7 +286,7 @@ def print_step_indoor_experiment(position_values, rotation_values, time_stamps):
 
     body_height_offset = 0.08
     body_height = 0.24
-    mount_height = 0.11
+    mount_height = 0.13
     body_width = 0.27
     body_length = 0.531
 
@@ -334,7 +334,7 @@ def print_step_indoor_experiment(position_values, rotation_values, time_stamps):
 ######################################################################################################################################
 ######################################################################################################################################
     position_figure = plt.figure(0, figsize=(16, 9), dpi=120)
-    position_figure.suptitle("Gap with Step", fontsize=30)
+    #position_figure.suptitle("Gap with Step", fontsize=30)
     left_ax1 = plt.subplot(3, 1, 1)
     plt.plot(x_axis_values[start_index:end_index],
              rotation_values[start_index:end_index, 0], '--', color=(1, 0, 0), label='Roll (degrees)')
@@ -434,7 +434,7 @@ def print_first_field_experiment(position_values, rotation_values, time_stamps):
 
     body_height_offset = 0.08
     body_height = 0.24
-    mount_height = 0.11
+    mount_height = 0.13
     body_width = 0.27
     body_length = 0.531
 
@@ -485,7 +485,7 @@ def print_first_field_experiment(position_values, rotation_values, time_stamps):
     plt.rcParams.update({'font.size': 20})
 ######################################################################################################################################
     position_figure = plt.figure(0, figsize=(16, 9), dpi=120)
-    position_figure.suptitle("Rectangular Gap", fontsize=30)
+    #position_figure.suptitle("Rectangular Gap", fontsize=30)
     left_ax1 = plt.subplot(3, 1, 1)
     plt.plot(x_axis_values[start_index:end_index],
              rotation_values[start_index:end_index, 0], '--', color=(1, 0, 0), label='Roll (degrees)')
@@ -582,7 +582,7 @@ def print_second_field_experiment(position_values, rotation_values, time_stamps)
 
     body_height_offset = 0.08
     body_height = 0.24
-    mount_height = 0.11
+    mount_height = 0.13
     body_width = 0.27
     body_length = 0.531
 
@@ -622,7 +622,7 @@ def print_second_field_experiment(position_values, rotation_values, time_stamps)
 ######################################################################################################################################
 ######################################################################################################################################
     position_figure = plt.figure(0, figsize=(16, 9), dpi=120)
-    position_figure.suptitle("Crumbling Wall", fontsize=30)
+    #position_figure.suptitle("Crumbling Wall", fontsize=30)
     left_ax1 = plt.subplot(3, 1, 1)
     plt.plot(x_axis_values[start_index:end_index],
              rotation_values[start_index:end_index, 0], '--', color=(1, 0, 0), label='Roll (degrees)')
@@ -724,7 +724,7 @@ def plot_collapsed_building(position_values, rotation_values, time_stamps):
 
     body_height_offset = 0.08
     body_height = 0.24
-    mount_height = 0.11
+    mount_height = 0.13
     body_width = 0.27
     body_length = 0.531
 
@@ -772,7 +772,7 @@ def plot_collapsed_building(position_values, rotation_values, time_stamps):
 ######################################################################################################################################
 ######################################################################################################################################
     position_figure = plt.figure(0, figsize=(16, 9), dpi=120)
-    position_figure.suptitle("Collapsed Building", fontsize=30)
+    #position_figure.suptitle("Collapsed Building", fontsize=30)
     left_ax1 = plt.subplot(3, 1, 1)
     plt.plot(x_axis_values[start_index:end_index],
              rotation_values[start_index:end_index, 0], '--', color=(1, 0, 0), label='Roll (degrees)')
@@ -876,7 +876,7 @@ if __name__ == "__main__":
 
     #print_low_indoor_experiment(position_values, rotation_values, time_stamps)
     #print_rotated_indoor_experiment(position_values, rotation_values, time_stamps)
-    #print_step_indoor_experiment(position_values, rotation_values, time_stamps)
+    print_step_indoor_experiment(position_values, rotation_values, time_stamps)
     #print_first_field_experiment(position_values, rotation_values, time_stamps)
-    print_second_field_experiment(position_values, rotation_values, time_stamps)
+    #print_second_field_experiment(position_values, rotation_values, time_stamps)
     #plot_collapsed_building(position_values, rotation_values, time_stamps)
