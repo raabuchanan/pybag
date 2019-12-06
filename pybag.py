@@ -3,7 +3,7 @@ from BagParser import BagParser
 import sys
 import numpy as np
 import matplotlib.pyplot as plt
-
+from scipy.stats import expon
 
 
 def print_low_indoor_experiment(position_values, rotation_values, time_stamps):
@@ -864,19 +864,40 @@ def plot_collapsed_building(position_values, rotation_values, time_stamps):
     input()
 
 
+def print_anymal_foot_velocity(position_values):
+  fig = plt.figure()
+  ax = plt.axes()
+
+  velocity_values = np.array(np.gradient(position_values, 1/400.0))
+
+  probability =  np.array(np.gradient(expon.cdf(np.power( velocity_values[0,:,0], 2)), 0.5))
+
+  print probability.shape
+
+  ax.plot(position_values[:,0], color=(1, 0, 0))
+  ax.plot(velocity_values[0,:,0], color=(0, 1, 0))
+  ax.plot(probability, color=(0, 0, 1))
+
+  fig.show()
+
+  input()
+
 if __name__ == "__main__":
 
     parser = BagParser(sys.argv[1])
     parser.parse()
 
-    position_values = parser.get_pose_position()
-    rotation_values = parser.get_pose_euler_rotation()
-    time_stamps = parser.get_pose_time()
-    time_stamps = time_stamps - time_stamps[0]
+    position_values = parser.get_rf_position()
+    print_anymal_foot_velocity(position_values)
+
+    # position_values = parser.get_pose_position()
+    # rotation_values = parser.get_pose_euler_rotation()
+    # time_stamps = parser.get_pose_time()
+    # time_stamps = time_stamps - time_stamps[0]
 
     #print_low_indoor_experiment(position_values, rotation_values, time_stamps)
     #print_rotated_indoor_experiment(position_values, rotation_values, time_stamps)
-    print_step_indoor_experiment(position_values, rotation_values, time_stamps)
+    #print_step_indoor_experiment(position_values, rotation_values, time_stamps)
     #print_first_field_experiment(position_values, rotation_values, time_stamps)
     #print_second_field_experiment(position_values, rotation_values, time_stamps)
     #plot_collapsed_building(position_values, rotation_values, time_stamps)
