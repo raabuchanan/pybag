@@ -38,12 +38,12 @@ if __name__ == "__main__":
     # icp_tf_times = parser.get_icp_tf_times()
 
     map_counter = 1
-    file = open('/home/russell/sewer_probing_assets/mission3p2/re_processed_contact_maps/times.csv', "rU")
+    file = open('/home/russell/sewer_probing_assets/mission3/re_processed_contact_maps/times.csv', "rU")
     reader = csv.reader(file, delimiter=',')
     for row in reader:
         time = float(row[1])*1e-9
         print("Processing ", row[0], " at time ", time)
-        contact_map = PlyData.read('/home/russell/sewer_probing_assets/mission3p2/re_processed_contact_maps/map' + str(map_counter) +'.ply')
+        contact_map = PlyData.read('/home/russell/sewer_probing_assets/mission3/re_processed_contact_maps/map' + str(map_counter) +'.ply')
 
         contact_time_idx_start = find_nearest_idx(contact_times, time)
         contact_time_idx_end = find_nearest_idx(contact_times, time + 3)
@@ -116,7 +116,7 @@ if __name__ == "__main__":
                   colorized_counter = local_colorized_counter
 
         print(colorized_counter, "points colorized")
-        PlyData(contact_map, text=True).write('/home/russell/sewer_probing_assets/mission3p2/re_processed_contact_maps/processed_bags/map' + str(map_counter) +'_processed.ply')
+        PlyData(contact_map, text=True).write('/home/russell/sewer_probing_assets/mission3/re_processed_contact_maps/processed_bags/map' + str(map_counter) +'_processed.ply')
 
         map_counter = map_counter + 1
         

@@ -41,6 +41,12 @@ class BagParser:
     def get_rf_position(self):
         return self.state.rf_position
 
+    def get_base_position(self):
+        return self.state.base_position
+
+    def get_base_rotation(self):
+        return self.state.base_rotation
+
     def get_state_times(self):
         return self.state.state_times
 

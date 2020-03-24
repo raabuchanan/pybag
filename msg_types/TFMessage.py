@@ -29,17 +29,17 @@ class TFMessage:
                     self.tf_times = np.append(self.tf_times, np.array(
                         [[transform.header.stamp.secs + transform.header.stamp.nsecs*1e-9]]), axis=0)
 
-                if transform.header.frame_id == "odom" and transform.child_frame_id == "icp_odom":
+                # if transform.header.frame_id == "odom" and transform.child_frame_id == "icp_odom":
 
-                    self.icp_tf_position_arr = np.append(self.icp_tf_position_arr, np.array(
-                        [[transform.transform.translation.x,
-                          transform.transform.translation.y,
-                          transform.transform.translation.z]]), axis=0)
-                    self.icp_tf_rotation_arr = np.append(self.icp_tf_rotation_arr, np.array([[transform.transform.rotation.x,
-                                            transform.transform.rotation.y, transform.transform.rotation.z,
-                                            transform.transform.rotation.w]]), axis=0)
-                    self.icp_tf_times = np.append(self.icp_tf_times, np.array(
-                        [[transform.header.stamp.secs + transform.header.stamp.nsecs*1e-9]]), axis=0)
+                #     self.icp_tf_position_arr = np.append(self.icp_tf_position_arr, np.array(
+                #         [[transform.transform.translation.x,
+                #           transform.transform.translation.y,
+                #           transform.transform.translation.z]]), axis=0)
+                #     self.icp_tf_rotation_arr = np.append(self.icp_tf_rotation_arr, np.array([[transform.transform.rotation.x,
+                #                             transform.transform.rotation.y, transform.transform.rotation.z,
+                #                             transform.transform.rotation.w]]), axis=0)
+                #     self.icp_tf_times = np.append(self.icp_tf_times, np.array(
+                #         [[transform.header.stamp.secs + transform.header.stamp.nsecs*1e-9]]), axis=0)
 
             try:
                 next(messages)
